@@ -2,11 +2,12 @@ class Spaceship extends Floater
 {   
 	public Spaceship()
 	{
-		corners = 3;
+		corners = 4;
+		//fancy spaceship facing wrong direction
 		//int[] xS = {0,30,30,40,50,50,30,40,10,20,-20,-10,-40,-30,-50,-50,-40,-30,-30,0};
 		//int[] yS = {-80,-50,10,-10,10,30,30,40,40,30,30,40,40,30,30,10,-10,10,-50,-80};
-		int[] xS = {60,-20,-20};
-		int[] yS = {0,20,-20};
+		int[] xS = {45,-20,0,-20};
+		int[] yS = {0,20,0,-20};
 		xCorners = xS;
 		yCorners = yS;
 		myColor = 255;
