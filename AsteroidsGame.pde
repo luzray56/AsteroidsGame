@@ -1,16 +1,22 @@
 Spaceship andy = new Spaceship();
+Asteroid [] wuford;
 Star [] wu;
 public void setup() 
 {
   size(1000,1000);
-  wu = new Star[100];
+  wu = new Star[200];
   for (int i=0; i<wu.length; i++)
   {
-    wu[i]= new Star(); 
+    wu[i] = new Star(); 
     wu[i].setX((int)(Math.random()*1000));
   	wu[i].getX();
   	wu[i].setY((int)(Math.random()*1000));
   	wu[i].getY();
+  }
+  wuford = new Asteroid[10];
+  for (int i=0; i<wuford.length; i++)
+  {
+  	wuford[i] = new Asteroid();
   }
 }
 public void draw() 
@@ -20,6 +26,12 @@ public void draw()
   {
   	wu[i].show();
   } 
+  for (int i=0; i<wuford.length; i++)
+  {
+  	wuford[i].show();
+  	wuford[i].move();
+  	wuford[i].turn(wuford[i].getRotSpeed());
+  }
   andy.show();
   andy.move();
 }
