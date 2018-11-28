@@ -13,11 +13,10 @@ public void setup()
   	wu[i].setY((int)(Math.random()*1000));
   	wu[i].getY();
   }
-  /*for (int i=0; i<10; i++)
+  for (int i=0; i<10; i++)
   {
-  	wuford.add(i);
-  }
-  */
+  	wuford.add(new Asteroid());
+  }  
 }
 public void draw() 
 {
@@ -26,13 +25,20 @@ public void draw()
   {
   	wu[i].show();
   } 
- /* for (int i=0; i<wuford.length; i++)
+  // using for each 
+  /* for (Asteroid albert : wuford)
   {
-  	wuford[i].show();
-  	wuford[i].move();
-  	wuford[i].turn(wuford[i].getRotSpeed());
-  }
-  */
+  	albert.show();
+  	albert.move();
+  	albert.turn(albert.getRotSpeed());
+  } */
+  // using for 
+  for (int i = 0; i < wuford.size(); i++)
+  {
+	wuford.get(i).show();
+	wuford.get(i).move();
+	wuford.get(i).turn(wuford.get(i).getRotSpeed());
+  } 
   andy.show();
   andy.move();
 }
