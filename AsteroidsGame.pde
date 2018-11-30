@@ -1,6 +1,10 @@
 Spaceship andy = new Spaceship();
 ArrayList <Asteroid> wuford = new ArrayList <Asteroid>();
 Star [] wu;
+boolean aPressed = false;
+boolean sPressed = false;
+boolean dPressed = false;
+boolean wPressed = false;
 public void setup() 
 {
   size(1000,1000);
@@ -13,7 +17,7 @@ public void setup()
   	wu[i].setY((int)(Math.random()*1000));
   	wu[i].getY();
   }
-  for (int i=0; i<10; i++)
+  for (int i=0; i<13; i++)
   {
   	wuford.add(new Asteroid());
   }  
@@ -25,29 +29,30 @@ public void draw()
   {
   	wu[i].show();
   } 
-  // using for each 
-  /* for (Asteroid albert : wuford)
-  {
-  	albert.show();
-  	albert.move();
-  	albert.turn(albert.getRotSpeed());
-  } */
-  // using for 
   for (int i = 0; i < wuford.size(); i++)
   {
 	wuford.get(i).show();
 	wuford.get(i).move();
 	wuford.get(i).turn(wuford.get(i).getRotSpeed());
+	float d = dist(andy.getX(), andy.getY(), wuford.get(i).getX(), wuford.get(i).getY());
+	if (d < 20)
+		wuford.remove(i);
   } 
+  if (wPressed == true) {andy.accelerate(0.08);}
+  if (sPressed == true) {andy.accelerate(-0.08);}
+  if (dPressed == true) {andy.turn(3);}
+  if (aPressed == true) {andy.turn(-3);}
+  if (wPressed == false) {andy.accelerate(0);}
+  if (sPressed == false) {andy.accelerate(0);}
   andy.show();
   andy.move();
 }
 public void keyPressed()
 {
-	if (key == 'w') {andy.accelerate(0.5);}
-	if (key == 's') {andy.accelerate(-0.5);}
-	if (key == 'd') {andy.turn(4);}
-	if (key == 'a') {andy.turn(-4);}
+	if (key == 'w') {wPressed = true;}
+	if (key == 's') {sPressed = true;}
+	if (key == 'd') {dPressed = true;}
+	if (key == 'a') {aPressed = true;}
 	if (key == 'e') //hyperspace
 	{
 		andy.setX((int)(Math.random()*1000));
@@ -62,4 +67,10 @@ public void keyPressed()
 		andy.getPointDirection();
 	}
 }
-
+public void keyReleased()
+{
+	if (key == 'w') {wPressed = false;}
+	if (key == 's') {sPressed = false;}
+	if (key == 'd') {dPressed = false;}
+	if (key == 'a') {aPressed = false;}
+}
