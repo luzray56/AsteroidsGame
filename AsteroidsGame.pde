@@ -1,6 +1,7 @@
 Spaceship andy = new Spaceship();
 ArrayList <Asteroid> wuford = new ArrayList <Asteroid>();
 Star [] wu;
+Bullet shot = new Bullet(andy);
 boolean aPressed = false;
 boolean sPressed = false;
 boolean dPressed = false;
@@ -46,6 +47,8 @@ public void draw()
   if (sPressed == false) {andy.accelerate(0);}
   andy.show();
   andy.move();
+  shot.show();
+  shot.move();
 }
 public void keyPressed()
 {
