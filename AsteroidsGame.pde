@@ -1,7 +1,7 @@
 Spaceship andy = new Spaceship();
 ArrayList <Asteroid> wuford = new ArrayList <Asteroid>();
+ArrayList <Bullet> albert = new ArrayList <Bullet>();
 Star [] wu;
-Bullet shot = new Bullet(andy);
 boolean aPressed = false;
 boolean sPressed = false;
 boolean dPressed = false;
@@ -17,11 +17,10 @@ public void setup()
   	wu[i].getX();
   	wu[i].setY((int)(Math.random()*1000));
   	wu[i].getY();
+    wu[i].show();
   }
-  for (int i=0; i<13; i++)
-  {
-  	wuford.add(new Asteroid());
-  }  
+  for (int i=0; i<25; i++)
+  	wuford.add(new Asteroid());  
 }
 public void draw() 
 {
@@ -32,23 +31,37 @@ public void draw()
   } 
   for (int i = 0; i < wuford.size(); i++)
   {
-	wuford.get(i).show();
-	wuford.get(i).move();
-	wuford.get(i).turn(wuford.get(i).getRotSpeed());
-	float d = dist(andy.getX(), andy.getY(), wuford.get(i).getX(), wuford.get(i).getY());
-	if (d < 20)
+	 wuford.get(i).show();
+	 wuford.get(i).move();
+	 wuford.get(i).turn(wuford.get(i).getRotSpeed());
+	 float d = dist(andy.getX(), andy.getY(), wuford.get(i).getX(), wuford.get(i).getY());
+	 if (d < 20)
 		wuford.remove(i);
-  } 
+   }
+
+  for (int i = 0; i < albert.size(); i++)
+  {
+    albert.get(i).show();
+    albert.get(i).move();  
+    for (int j = 0; j < wuford.size(); j++)
+    {
+      float di = dist(wuford.get(j).getX(), wuford.get(j).getY(), albert.get(i).getX(), albert.get(i).getY());
+      if (di < 20)
+      {
+        wuford.remove(j);
+        albert.remove(i);
+        break; 
+      }
+    }
+  }
   if (wPressed == true) {andy.accelerate(0.08);}
   if (sPressed == true) {andy.accelerate(-0.08);}
-  if (dPressed == true) {andy.turn(3);}
-  if (aPressed == true) {andy.turn(-3);}
+  if (dPressed == true) {andy.turn(4);}
+  if (aPressed == true) {andy.turn(-4);}
   if (wPressed == false) {andy.accelerate(0);}
   if (sPressed == false) {andy.accelerate(0);}
   andy.show();
   andy.move();
-  shot.show();
-  shot.move();
 }
 public void keyPressed()
 {
@@ -56,7 +69,8 @@ public void keyPressed()
 	if (key == 's') {sPressed = true;}
 	if (key == 'd') {dPressed = true;}
 	if (key == 'a') {aPressed = true;}
-	if (key == 'e') //hyperspace
+  if (key == 'e') {albert.add(new Bullet(andy));}
+	if (key == 'r') //hyperspace
 	{
 		andy.setX((int)(Math.random()*1000));
 		andy.getX();
